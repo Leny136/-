@@ -1,168 +1,181 @@
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title></title> <!-- Esto deja la pestaña vacía -->
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<title></title> <!-- Pestaña vacía -->
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body{
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg,#ffd1dc,#ffe6f0);
-      padding: 20px;
-      min-height: 100vh;
-    }
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg,#ffd1dc,#ffe6f0);
+  padding: 20px;
+  min-height: 100vh;
+}
 
-    .card{
-      background:#fff;
-      width: 90%;
-      max-width: 500px;
-      border-radius: 25px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,.15);
-      margin: 20px auto;
-    }
+.card{
+  background:#fff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 25px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+  margin: 20px auto;
+}
 
-    h1{
-      color:#ff4d6d;
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
+h1{
+  color:#ff4d6d;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
 
-    .hidden{
-      display: none !important;
-    }
+.hidden{
+  display: none !important;
+}
 
-    button{
-      width: 100%;
-      padding: 15px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 30px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
+button{
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
-    .yes{
-      background:#ff4d6d;
-      color: white;
-    }
+.yes{
+  background:#ff4d6d;
+  color: white;
+}
 
-    .no{
-      background:#f2f2f2;
-      color: #333;
-    }
+.no{
+  background:#f2f2f2;
+  color: #333;
+}
 
-    .option{
-      background:#ffe6ee;
-      border: 2px solid transparent;
-      color: #333;
-      margin: 0;
-      font-size: 14px;
-    }
+.option{
+  background:#ffe6ee;
+  border: 2px solid transparent;
+  color: #333;
+  margin: 0;
+  font-size: 14px;
+}
 
-    .option.selected{
-      border-color:#ff4d6d;
-      background:#ffd1dc;
-      color: #333;
-    }
+.option.selected{
+  border-color:#ff4d6d;
+  background:#ffd1dc;
+  color: #333;
+}
 
-    .confirm-btn{
-      background:#ff4d6d;
-      color: white;
-      margin-top: 20px;
-    }
+.confirm-btn{
+  background:#ff4d6d;
+  color: white;
+  margin-top: 20px;
+}
 
-    img{
-      width: 100%;
-      border-radius: 20px;
-      margin: 10px 0;
-    }
+img{
+  width: 100%;
+  border-radius: 20px;
+  margin: 10px 0;
+}
 
-    .img-container {
-      width: 100%;
-      height: 120px;
-      border-radius: 10px;
-      overflow: hidden;
-      background-color: #f0f0f0;
-    }
+/* -------------------- AJUSTES PARA QUE TODAS LAS IMÁGENES QUEDEN IGUALES -------------------- */
+.img-container {
+  width: 100%;
+  height: 120px; /* Alto fijo para todas */
+  border-radius: 10px;
+  overflow: hidden; /* Oculta las partes que sobresalgan */
+  background-color: #f0f0f0; /* Fondo gris claro si la imagen no ocupa todo */
+}
 
-    .option-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      margin: 0;
-      border-radius: 0;
-    }
+.option-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta la imagen sin deformarla */
+  object-position: center; /* Centra la imagen en el contenedor */
+  margin: 0;
+  border-radius: 0; /* Quita el borde redondeado para que no choque con el contenedor */
+}
 
-    .floating-love {
-      position: fixed;
-      bottom: -20px;
-      font-size: 40px;
-      color: #ff4d6d;
-      pointer-events: none;
-      z-index: 100;
-      animation: floatUp 15s linear forwards;
-    }
+/* Estilos para los elementos flotantes */
+.floating-love {
+  position: fixed;
+  bottom: -20px;
+  font-size: 40px;
+  color: #ff4d6d;
+  pointer-events: none;
+  z-index: 100;
+  animation: floatUp 15s linear forwards;
+}
 
-    @keyframes floatUp {
-      to {
-        transform: translateY(-90vh);
-        opacity: 0;
-      }
-    }
+@keyframes floatUp {
+  to {
+    transform: translateY(-90vh);
+    opacity: 0;
+  }
+}
 
-    .options-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
+/* -------------------- DISEÑO DE TARJETAS COMIDA Y ACTIVIDADES -------------------- */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
 
-    .option-card {
-      background: #fff;
-      border: 3px solid #e0e0e0;
-      border-radius: 15px;
-      padding: 10px;
-      text-align: center;
-      position: relative;
-      transition: all 0.2s ease;
-    }
+.option-card {
+  background: #fff;
+  border: 3px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  transition: all 0.2s ease;
+}
 
-    .option-card.selected {
-      border: 3px solid #ff4d6d;
-    }
+.option-card.selected {
+  border: 3px solid #ff4d6d;
+}
 
-    .check-mark {
-      position: absolute;
-      top: -12px;
-      right: -12px;
-      background: #ff4d6d;
-      color: #fff;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
+.check-mark {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: #ff4d6d;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
 
-    .option-card .option {
-      width: 100%;
-      padding: 10px;
-    }
-  </style>
+.option-card .option {
+  width: 100%;
+  padding: 10px;
+}
+
+/* Estilo iframe para Google Form */
+#googleFormIframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  margin-top: 20px;
+  border-radius: 15px;
+}
+</style>
 </head>
 <body>
 
-<!-- Paso 1 -->
+<!-- -------------------- PASOS -------------------- -->
+
 <div class="card" id="step1">
   <h1>¿Me dejarías ser tu San Valentín?</h1>
   <img src="https://i.postimg.cc/y6PfpPqK/906a0aa0178e34058edb3d30fb183608.jpg" alt="Foto bonita">
@@ -170,17 +183,16 @@
   <button class="no" id="noBtn">No</button>
 </div>
 
-<!-- Paso 2 -->
 <div class="card hidden" id="step2">
   <h1>¿Eres libre este día?</h1>
   <button class="option date-option">14/02/2026 – 19:00</button>
   <button class="confirm-btn" id="confirmDate">Confirmar fecha</button>
 </div>
 
-<!-- Paso 3 -->
 <div class="card hidden" id="step3">
   <h1>¿Qué te gustaría comer?</h1>
   <div class="options-grid">
+    <!-- TODAS LAS COMIDAS CON SUS IMÁGENES -->
     <div class="option-card" data-type="food">
       <div class="check-mark hidden">✔</div>
       <div class="img-container">
@@ -227,10 +239,10 @@
   <button class="confirm-btn" id="confirmFood">Confirmar comida</button>
 </div>
 
-<!-- Paso 4 -->
 <div class="card hidden" id="step4">
   <h1>¿Qué te gustaría hacer?</h1>
   <div class="options-grid">
+    <!-- TODAS LAS ACTIVIDADES CON SUS IMÁGENES -->
     <div class="option-card" data-type="activity">
       <div class="check-mark hidden">✔</div>
       <div class="img-container">
@@ -277,7 +289,6 @@
   <button class="confirm-btn" id="confirmActivity">Confirmar opción</button>
 </div>
 
-<!-- Paso final -->
 <div class="card hidden" id="final">
   <img src="https://i.postimg.cc/G9wd28YK/8a5cf78cf7cf0c8f23e081ec6dea3ccc.jpg" alt="Feliz San Valentín">
   <h1>
@@ -286,81 +297,124 @@
     esperando y si no vienes, mi corazón se<br><br>
     va a hacer añicos, ¡nos vemos guapo! 😘
   </h1>
+
+  <!-- Iframe para Google Form -->
+  <iframe id="googleFormIframe" src=""></iframe>
 </div>
 
 <script>
-  const yesBtn = document.getElementById("yesBtn");
-  const noBtn = document.getElementById("noBtn");
-  let scale = 1;
+// Variables principales
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+let scale = 1;
 
-  const loveElements = ["💖","💗","💕","💘","❤️","Te amo","Mi amor","Eres mío","😍","✨","Te quiero","Amor mio","Mi príncipe","Hermoso mío","Pecas","Me perteneces","Eres mi mundo","Mi calabacín","Encantador","Te estoy vigilando","Siempre te estoy viendo","Guapo","Grandioso","Brillante","Bello","😘","🫦","🥰","💝","💓","💞","❤️‍🩹","💋","❣️","Cariño","Dulzura","Tesoro","Corazón","cielo","Ternura","Sol","Luna"];
+// Lista de elementos lindos que aparecerán
+const loveElements = [
+  "💖", "💗", "💕", "💘", "❤️", 
+  "Te amo", "Mi amor", "Eres mío", 
+  "😍", "✨", "Te quiero", "Amor mio",
+  "Mi príncipe", "Hermoso mío", "Pecas", "Me perteneces",
+  "Eres mi mundo", "Mi calabacín", "Encantador", "Te estoy vigilando",
+  "Siempre te estoy viendo", "Guapo", "Grandioso", "Brillante",
+  "Bello", "😘", "🫦", "🥰",
+  "💝", "💓", "💞", "❤️‍🩹",
+  "💋", "❣️", "Cariño", "Dulzura",
+  "Tesoro", "Corazón", "cielo", "Ternura",
+  "Sol", "Luna",
+];
 
-  function showLove() {
-    const love = document.createElement("div");
-    love.className = "floating-love";
-    love.innerText = loveElements[Math.floor(Math.random() * loveElements.length)];
-    love.style.left = Math.random() * 100 + "vw";
-    love.style.animationDuration = (2 + Math.random() * 2) + "s";
-    love.style.fontSize = (18 + Math.random() * 8) + "px";
-    document.body.appendChild(love);
-    setTimeout(() => love.remove(), 15000);
+// Función para crear elementos flotantes
+function showLove() {
+  const love = document.createElement("div");
+  love.className = "floating-love";
+  love.innerText = loveElements[Math.floor(Math.random() * loveElements.length)];
+  love.style.left = Math.random() * 100 + "vw";
+  love.style.animationDuration = (2 + Math.random() * 2) + "s";
+  love.style.fontSize = (18 + Math.random() * 8) + "px";
+  document.body.appendChild(love);
+  setTimeout(() => love.remove(), 15000);
+}
+
+// Efecto botón "No"
+noBtn.onclick = () => {
+  scale += 0.2;
+  yesBtn.style.transform = `scale(${scale})`;
+};
+
+// Botón "Sí"
+yesBtn.onclick = () => goToStep(2);
+
+// Selección de fecha
+document.querySelectorAll(".date-option").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".date-option").forEach(b => b.classList.remove("selected"));
+    btn.classList.add("selected");
+    showLove();
   }
+});
 
-  noBtn.onclick = () => {
-    scale += 0.2;
-    yesBtn.style.transform = `scale(${scale})`;
-  };
-
-  yesBtn.onclick = () => goToStep(2);
-
-  document.querySelectorAll(".date-option").forEach(btn => {
-    btn.onclick = () => {
-      document.querySelectorAll(".date-option").forEach(b => b.classList.remove("selected"));
-      btn.classList.add("selected");
-      showLove();
-    }
-  });
-
-  document.querySelectorAll(".food-option").forEach(btn => {
-    btn.onclick = () => {
-      const card = btn.closest(".option-card");
-      card.classList.toggle("selected");
-      const check = card.querySelector(".check-mark");
-      check.classList.toggle("hidden");
-      showLove();
-    }
-  });
-
-  document.querySelectorAll(".activity-option").forEach(btn => {
-    btn.onclick = () => {
-      const card = btn.closest(".option-card");
-      card.classList.toggle("selected");
-      const check = card.querySelector(".check-mark");
-      check.classList.toggle("hidden");
-      showLove();
-    }
-  });
-
-  document.getElementById("confirmDate").onclick = () => {
-    if(document.querySelector(".date-option.selected")) goToStep(3);
-    else alert("Elige una fecha primero amor ❤️");
-  };
-
-  document.getElementById("confirmFood").onclick = () => {
-    if(document.querySelector(".option-card.selected[data-type='food']")) goToStep(4);
-    else alert("Elige al menos una comida ❤️");
-  };
-
-  document.getElementById("confirmActivity").onclick = () => {
-    if(document.querySelector(".option-card.selected[data-type='activity']")) goToStep(5);
-    else alert("Elige al menos una actividad ❤️");
-  };
-
-  function goToStep(stepNumber) {
-    document.querySelectorAll(".card").forEach(card => card.classList.add("hidden"));
-    if(stepNumber === 5) document.getElementById("final").classList.remove("hidden");
-    else document.getElementById("step" + stepNumber).classList.remove("hidden");
+// SELECCIÓN DE COMIDAS (activa borde y tilde)
+document.querySelectorAll(".food-option").forEach(btn => {
+  btn.onclick = () => {
+    const card = btn.closest(".option-card");
+    card.classList.toggle("selected");
+    const check = card.querySelector(".check-mark");
+    check.classList.toggle("hidden");
+    showLove();
   }
+});
+
+// SELECCIÓN DE ACTIVIDADES (activa borde y tilde)
+document.querySelectorAll(".activity-option").forEach(btn => {
+  btn.onclick = () => {
+    const card = btn.closest(".option-card");
+    card.classList.toggle("selected");
+    const check = card.querySelector(".check-mark");
+    check.classList.toggle("hidden");
+    showLove();
+  }
+});
+
+// ID de tu Google Form (solo reemplazá este link con tu formulario real)
+const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSc50_B4v9aFjuZZLLe7Dnt2fjz28-sFiDH6dtK8m3CAV8CXmA/viewform?embedded=true";
+
+// Botón confirmar fecha
+document.getElementById("confirmDate").onclick = () => {
+  if(document.querySelector(".date-option.selected")) {
+    goToStep(3);
+    // Abrir formulario en iframe
+    document.getElementById("googleFormIframe").src = googleFormURL;
+  } else {
+    alert("Elige una fecha primero amor ❤️");
+  }
+};
+
+// Botón confirmar comida
+document.getElementById("confirmFood").onclick = () => {
+  if(document.querySelector(".option-card.selected[data-type='food']")) {
+    goToStep(4);
+    document.getElementById("googleFormIframe").src = googleFormURL;
+  } else {
+    alert("Elige al menos una comida ❤️");
+  }
+};
+
+// Botón confirmar actividades
+document.getElementById("confirmActivity").onclick = () => {
+  if(document.querySelector(".option-card.selected[data-type='activity']")) {
+    goToStep(5);
+    document.getElementById("googleFormIframe").src = googleFormURL;
+  } else {
+    alert("Elige al menos una actividad ❤️");
+  }
+};
+
+// Función para cambiar de paso
+function goToStep(stepNumber) {
+  document.querySelectorAll(".card").forEach(card => card.classList.add("hidden"));
+  if(stepNumber === 5) document.getElementById("final").classList.remove("hidden");
+  else document.getElementById("step" + stepNumber).classList.remove("hidden");
+}
 </script>
 </body>
-</html>
+  </html>
